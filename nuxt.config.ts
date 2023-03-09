@@ -7,7 +7,7 @@ export default defineNuxtConfig({
         }
     },
     build: {
-        transpile: ["naive-ui"]
+        transpile: ["naive-ui", 'vueuc']
     },
     app: {
         baseURL: '/',
