@@ -6,6 +6,13 @@ export default defineNuxtConfig({
             noExternal: ['naive-ui']
         }
     },
+    build: {
+        transpile: ["naive-ui"]
+    },
+    app: {
+        baseURL: '/',
+        buildAssetsDir: '/assets'
+    },
     components: {
         global: true,
         dirs: ['~/components'],
