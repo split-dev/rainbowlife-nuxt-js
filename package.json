@@ -1,8 +1,8 @@
 {
   "private": true,
   "scripts": {
-    "build": "nuxt build",
-    "dev": "nuxt dev",
+    "build": "NITRO_PRESET=netlify-builder nuxt build",
+    "dev": "NITRO_PRESET=netlify-builder HOST=0.0.0.0 nuxt dev",
     "generate": "nuxt generate",
     "preview": "nuxt preview",
     "start": "node .output/server/index.mjs",
