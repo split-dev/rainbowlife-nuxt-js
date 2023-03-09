@@ -347,11 +347,12 @@ export default {
     swiper_next: function() {
       this.swiper.slideNext();
     },
-    saveFile: function() {
+    saveFile: async function() {
       const data = JSON.stringify(this.arr);
 
       try {
-        $fetch('/api/data', { method: 'post', body: data });
+        const fd = await useFetch('/api/data', { method: 'post', body: data });
+        console.log('fd', fd);
       } catch(e) { 
         console.error(e, 'Failed to save the file !'); 
       }
