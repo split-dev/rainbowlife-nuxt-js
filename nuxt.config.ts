@@ -3,7 +3,7 @@ export default defineNuxtConfig({
     vite: {
         ssr: {
             // Add libraries containing invalid ESM here
-            noExternal: ['naive-ui']
+            noExternal: ['naive-ui', 'vueuc']
         }
     },
     build: {
