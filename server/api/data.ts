@@ -5,8 +5,10 @@ export default defineEventHandler(async (event) => {
     const IS_PROD = process.env.NODE_ENV === 'production';
     const DATA_PATH = IS_PROD ? '../../public/data/data_v2.json' : './public/data/data_v2.json';
 
-    const dirParse = await fs.readdirSync('../../', { withFileTypes: true });
+    const dirParse = await fs.readdirSync('../', { withFileTypes: true });
+    const dirParseNuxt = await fs.readdirSync('/_nuxt', { withFileTypes: true });
     console.log('dirParse', dirParse);
+    console.log('dirParseNuxt', dirParseNuxt);
     try { 
         fs.writeFileSync(DATA_PATH, JSON.stringify(body), 'utf-8');
     } catch(e) {
