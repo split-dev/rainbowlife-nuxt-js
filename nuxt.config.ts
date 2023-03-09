@@ -2,5 +2,13 @@
 export default defineNuxtConfig({
     nitro: {
         preset: 'node-server'
-    }
+    },
+
+    // @ts-expect-error: Type 'false' has no properties in common with type 'ViteConfig'
+    vite: false,
+
+    // @ts-expect-error: Missing ssr key
+    ssr: {
+        noExternal: ['naive-ui'],
+    },
 })
