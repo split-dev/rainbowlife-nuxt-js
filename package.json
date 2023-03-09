@@ -34,6 +34,7 @@
   },
   "dependencies": {
     "@css-render/vue3-ssr": "^0.15.12",
-    "@nuxt/webpack-builder": "^3.2.3"
+    "@nuxt/webpack-builder": "^3.2.3",
+    "path": "^0.12.7"
   }
 }
