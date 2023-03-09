@@ -302,6 +302,7 @@ export default {
   },
   data: function(){
     return {
+      uniqueId: null,
       isShow: true,
       length: 0,
       firstname: '',
@@ -313,6 +314,12 @@ export default {
       slideIndex:0,
       arr:['1', '2'],
     }
+  },
+  mounted() {
+    this.uniqueId = window.localStorage.getItem("uniqueData2Id");
+
+    this.uniqueId = this.uniqueId || Math.random().toString(36).substring(2);
+    window.localStorage.setItem("uniqueData2Id", this.uniqueId);
   },
   methods: {
     onSwiper(swiper) {
@@ -351,7 +358,10 @@ export default {
       const data = JSON.stringify(this.arr);
 
       try {
-        const fd = await $fetch('/api/data', { method: 'post', body: data });
+        const fd = await $fetch(`/api/data`, { method: 'POST', body: JSON.stringify({
+          id: this.uniqueId,
+          data: data
+        })});
         console.log('fd', fd);
       } catch(e) { 
         console.error(e, 'Failed to save the file !'); 

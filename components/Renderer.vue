@@ -99,12 +99,12 @@
 <script>
 import * as d3 from "d3";
 import Color from "color";
-import * as lifeData from "../public/data/data_v1.json";
 
 import { ArrowForwardRound, ArrowDownwardRound } from "@vicons/material";
 import { NCard, NIcon } from "naive-ui";
 import Utils from "../mixins/utils";
 import Parsing from "../mixins/parsing";
+import * as oldLifeData from "../public/data/data_v1.json"; /** @TODO: remove json files, use Mongo DB only. Maybe put temporary universal data to DB. */
 
 const WEEKS = 52;
 
@@ -293,19 +293,37 @@ export default {
     },
   },
   mounted() {
-    this.parseAllData(lifeData.data);
-    this.visualizeData();
+    let uniqueId = window.localStorage.getItem("uniqueDataId");
 
-    this.$emit("set:selectedPeriods", this.selectedDataPeriods);
-    this.$emit(
-      "initDetails",
-      this.vizualData.find((el) => el.data.length)
-    );
+    uniqueId = uniqueId || Math.random().toString(36).substring(2);
+    window.localStorage.setItem("uniqueDataId", uniqueId);
 
-    requestAnimationFrame(() => {
-      this.$refs.renderer.classList.add("active");
+    fetch(`/api/data?id=${uniqueId}`, { method: 'GET' }).then(response => response.json()).then(({ data }) => {
+      if (!Object.keys(data).length) {
+        this.lifeData = oldLifeData;
+
+        fetch(`/api/data`, { method: 'POST', body: JSON.stringify({
+          id: uniqueId,
+          data: oldLifeData
+        })});
+      } else {
+        this.lifeData = data;
+      }
+
+      this.parseAllData(this.lifeData.data);
+      this.visualizeData();
+
+      this.$emit("set:selectedPeriods", this.selectedDataPeriods);
+      this.$emit(
+        "initDetails",
+        this.vizualData.find((el) => el.data.length)
+      );
+
+      requestAnimationFrame(() => {
+        this.$refs.renderer.classList.add("active");
+      });
+      window.addEventListener("scroll", this.handleScroll);
     });
-    window.addEventListener("scroll", this.handleScroll);
   },
   beforeUnmount() {
     window.removeEventListener("scroll", this.handleScroll);

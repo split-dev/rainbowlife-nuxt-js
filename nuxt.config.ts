@@ -16,5 +16,5 @@ export default (process.env.NODE_ENV === 'production') ? defineNuxtConfig({
     components: {
         global: true,
         dirs: ['~/components'],
-    },
+    }
 }) : defineNuxtConfig({});
