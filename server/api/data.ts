@@ -9,10 +9,14 @@ export default defineEventHandler(async (event) => {
     const dirParseNuxt = await fs.readdirSync(process.cwd(), { withFileTypes: true });
     const dirParseVc = await fs.readdirSync('___vc', { withFileTypes: true });
     const dirParseCurr = await fs.readdirSync('.', { withFileTypes: true });
+    const dirParseChunks = await fs.readdirSync('chunks', { withFileTypes: true });
     console.log('dirParse', dirParse);
     console.log('dirParseNuxt', dirParseNuxt);
     console.log('dirParseVc', dirParseVc);
     console.log('dirParseCurr', dirParseCurr);
+    console.log('dirParseChunks', dirParseChunks);
+    console.log('event', event);
+    
     try { 
         fs.writeFileSync(DATA_PATH, JSON.stringify(body), 'utf-8');
     } catch(e) {
