@@ -1,5 +1,5 @@
 // https://nuxt.com/docs/api/configuration/nuxt-config
-export default defineNuxtConfig({
+export default (process.env.NODE_ENV === 'production') ? defineNuxtConfig({
     vite: {
         ssr: {
             // Add libraries containing invalid ESM here
@@ -17,4 +17,4 @@ export default defineNuxtConfig({
         global: true,
         dirs: ['~/components'],
     },
-})
+}) : defineNuxtConfig({});

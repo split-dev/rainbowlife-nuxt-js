@@ -99,7 +99,7 @@
 <script>
 import * as d3 from "d3";
 import Color from "color";
-import * as lifeData from "../data/data_v1.json";
+import * as lifeData from "../assets/data/data_v1.json";
 
 import { ArrowForwardRound, ArrowDownwardRound } from "@vicons/material";
 import { NCard, NIcon } from "naive-ui";

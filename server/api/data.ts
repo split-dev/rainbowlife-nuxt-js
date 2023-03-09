@@ -3,8 +3,9 @@ import fs from 'fs';
 export default defineEventHandler(async (event) => {
     const body = await readBody(event);
 
+    console.log()
     try { 
-        fs.writeFileSync('./data/data_v2.json', JSON.stringify(body), 'utf-8');
+        fs.writeFileSync('./assets/data/data_v2.json', JSON.stringify(body), 'utf-8');
     } catch(e) {
         console.error(e);
 
