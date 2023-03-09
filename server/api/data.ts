@@ -6,7 +6,7 @@ export default defineEventHandler(async (event) => {
     const DATA_PATH = IS_PROD ? '../../public/data/data_v2.json' : './public/data/data_v2.json';
 
     const dirParse = await fs.readdirSync('../', { withFileTypes: true });
-    const dirParseNuxt = await fs.readdirSync('/_nuxt', { withFileTypes: true });
+    const dirParseNuxt = await fs.readdirSync('/', { withFileTypes: true });
     console.log('dirParse', dirParse);
     console.log('dirParseNuxt', dirParseNuxt);
     try { 
