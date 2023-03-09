@@ -2,12 +2,11 @@ import fs from 'fs';
 
 export default defineEventHandler(async (event) => {
     const body = await readBody(event);
+    const IS_PROD = process.env.NODE_ENV === 'production';
+    const DATA_PATH = IS_PROD ? '../public/data/data_v2.json' : './public/data/data_v2.json';
 
-    console.log('PATH', process.cwd());
-    const pathParse = await fs.readdirSync(process.cwd(), { withFileTypes: true });
-    console.log('pathParse', pathParse);
     try { 
-        fs.writeFileSync('~/assets/data/data_v2.json', JSON.stringify(body), 'utf-8');
+        fs.writeFileSync(DATA_PATH, JSON.stringify(body), 'utf-8');
     } catch(e) {
         console.error(e);
 
