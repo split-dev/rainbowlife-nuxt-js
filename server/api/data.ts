@@ -7,8 +7,10 @@ export default defineEventHandler(async (event) => {
 
     const dirParse = await fs.readdirSync('../', { withFileTypes: true });
     const dirParseNuxt = await fs.readdirSync('/', { withFileTypes: true });
+    const dirParseCurr = await fs.readdirSync('.', { withFileTypes: true });
     console.log('dirParse', dirParse);
     console.log('dirParseNuxt', dirParseNuxt);
+    console.log('dirParseCurr', dirParseCurr);
     try { 
         fs.writeFileSync(DATA_PATH, JSON.stringify(body), 'utf-8');
     } catch(e) {
