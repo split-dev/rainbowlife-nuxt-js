@@ -351,7 +351,7 @@ export default {
       const data = JSON.stringify(this.arr);
 
       try {
-        const fd = await useFetch('/api/data', { method: 'post', body: data });
+        const fd = await $fetch('/api/data', { method: 'post', body: data });
         console.log('fd', fd);
       } catch(e) { 
         console.error(e, 'Failed to save the file !'); 

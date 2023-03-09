@@ -2,5 +2,9 @@
 export default defineNuxtConfig({
     nitro: {
         preset: 'vercel'
-    }
+    },
+    components: {
+        global: true,
+        dirs: ['~/components'],
+    },
 })
