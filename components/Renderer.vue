@@ -298,7 +298,7 @@ export default {
     uniqueId = uniqueId || Math.random().toString(36).substring(2);
     window.localStorage.setItem("uniqueDataId", uniqueId);
 
-    fetch(`/api/data?id=${uniqueId}`, { method: 'GET' }).then(response => response.json()).then(({ data }) => {
+    fetch(`/api/data?id=${uniqueId}`, { method: 'GET' }).then(response => response.json()).then((data) => {
       if (!Object.keys(data).length) {
         this.lifeData = oldLifeData;
 
@@ -307,7 +307,7 @@ export default {
           data: oldLifeData
         })});
       } else {
-        this.lifeData = data;
+        this.lifeData = data.data;
       }
 
       this.parseAllData(this.lifeData.data);
